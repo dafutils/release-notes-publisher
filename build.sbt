@@ -40,7 +40,6 @@ lazy val publicationSettings = Seq(
   bintrayReleaseOnPublish := !isSnapshot.value
 )
 
-
 lazy val projectMetadataSettings = Seq(
   licenses += "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"),
   homepage := Some(url(PROJECT_HOMEPAGE_URL)),
@@ -61,29 +60,19 @@ lazy val projectMetadataSettings = Seq(
 )
 
 lazy val releasenotespublisher = (project in file("."))
-  .configs(IntegrationTest)
-  .settings(Defaults.itSettings)
   .settings(projectMetadataSettings)
   .settings(versionSettings)
   .settings(publicationSettings)
   .settings(
-    scalaVersion := "2.12.2",
+    scalaVersion := "2.12.3",
 
     organization := "com.github.dafutils",
 
     name := "release-notes-publisher",
 
     libraryDependencies ++= Seq(
-      //Application config
-      "com.typesafe" % "config" % "1.3.2",
-
       //Logging
       "ch.qos.logback" % "logback-classic" % "1.2.3",
-      "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
-
-      //Test
-      "org.scalactic" %% "scalactic" % "3.0.4",
-      "org.scalatest" %% "scalatest" % "3.0.4" % "it,test",
-      "org.mockito" % "mockito-core" % "2.11.0" % "it,test"
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2"
     )
   )
