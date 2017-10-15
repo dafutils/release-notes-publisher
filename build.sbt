@@ -73,6 +73,7 @@ lazy val releasenotespublisher = (project in file("."))
     libraryDependencies ++= Seq(
       //Logging
       "ch.qos.logback" % "logback-classic" % "1.2.3",
-      "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2"
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
+      "org.eclipse.jgit" % "org.eclipse.jgit" % "4.9.0.201710071750-r"
     )
   )
