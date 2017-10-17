@@ -9,9 +9,7 @@ package com.github.dafutils.release.notes.publisher
   */
 class ReleaseNotesGenerator(ticketUrlConstructor: TicketUrlConstructor,
                             manualReleaseNotesResolver: ManualReleaseNotesResolver) {
-
-  type CommitMessageResolver[A] = (String) => Seq[A]
-
+  
   def generateReleaseNotesFor[A: TicketIdExtractor : CommitMessageResolver]
   (currentVersion: String): ReleaseNotes = {
 
@@ -22,7 +20,7 @@ class ReleaseNotesGenerator(ticketUrlConstructor: TicketUrlConstructor,
         val ticketUrl = ticketUrlConstructor.constructUrlFor(ticketId)
         ticketIds :+ ticketUrl
     }
-    val manualReleaseNotes = manualReleaseNotesResolver.resolveManualReleaseNotesForCurrentVersion()
+    val manualReleaseNotes = manualReleaseNotesResolver.releaseNotesForCurrentVersion()
     ReleaseNotes(urlsForTicketsSinceLastVersion, manualReleaseNotes)
   }
 }
